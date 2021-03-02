@@ -6,10 +6,9 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 
 import java.time.Duration;
 import java.util.Collections;
-import java.util.Map;
 import java.util.Properties;
 
-public class FraudDetectorService {
+public class EmailService {
     public static void main(String[] args) {
         var consumer = new KafkaConsumer<String, String>(properties());
         consumer.subscribe(Collections.singletonList("ECOMMERCE_NEW_ORDER"));
@@ -45,7 +44,7 @@ public class FraudDetectorService {
                 StringDeserializer.class.getName());
         properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,
                 StringDeserializer.class.getName());
-        properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, FraudDetectorService.class.getSimpleName());
+        properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, EmailService.class.getSimpleName());
         return properties;
     }
 }
